@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "psb/product-spot",
+  "version": "1.0.0",
+  "title": "Product Spot",
+  "category": "widgets",
+  "description": "Add interactive hotspots to product image.",
+  "keywords": [
+    "Product Spot",
+    "Product hotspot",
+    "Product spotlight",
+    "Product spot light"
+  ],
+  "textdomain": "product-spot",
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": ""
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "product": {
+      "type": "object",
+      "default": {}
+    },
+    "styles": {
+      "type": "object",
+      "default": {
+        "width": {
+          "desktop": "100%",
+          "tablet": "100%",
+          "mobile": "100%"
+        },
+        "height": {
+          "desktop": "100%",
+          "tablet": "100%",
+          "mobile": "100%"
+        }
+      }
+    },
+    "options": {
+      "type": "object",
+      "default": {}
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "example": {
+    "attributes": {}
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./view.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

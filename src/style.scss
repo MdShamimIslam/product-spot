@@ -1,0 +1,89 @@
+$primaryColor: #4527a4;
+
+.wp-block-psb-product-spot {
+	box-sizing: border-box;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.productSpotWrapper {
+		display: flex;
+
+		.productSpot{
+			min-width: 250px;
+
+			.simple {
+				position: relative;
+				// max-width: 768px;
+				// margin: 0 auto;
+				// width: 400px;
+			
+				.image {
+					width: 100%;
+					height: auto;
+					border-radius: 0.5rem;
+				}
+			
+				.hotspot {
+					position: absolute;
+					width: 24px;
+					height: 24px;
+					background-color: #0f34da;
+					border: 2px solid #fff;
+					border-radius: 50%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					cursor: pointer;
+					transform: translate(-50%, -50%);
+					z-index: 10;
+					transition: box-shadow 0.3s ease;
+			
+				&.hotspot-pulse {
+					box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2);
+				}
+			
+				.icon {
+					width: 12px;
+					height: 12px;
+					color: white;
+				}
+				}
+			
+				.info {
+					margin-top: 1rem;
+					padding: 1rem;
+					background: white;
+					border-radius: 0.5rem;
+					box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+					animation: fade-in 0.3s ease-in-out;
+			
+				.title {
+					font-size: 15px;
+					font-weight: 600;
+					color: #111827;
+					font-family: "inter";
+				}
+			
+				.desc {
+					color: #374151;
+					font-family: "inter";
+					font-size: 13px;
+				}
+				}
+			}
+			/* Fade-in animation */
+			@keyframes fade-in {
+				from {
+					opacity: 0;
+					transform: translateY(6px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+		}  
+	}
+}
