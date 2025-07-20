@@ -152,12 +152,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/plus.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/plus.js");
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-draggable */ "./node_modules/react-draggable/build/cjs/cjs.js");
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_draggable__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../utils/options */ "./src/utils/options.js");
 /* harmony import */ var _frontend_TitleDes_TitleDes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../frontend/TitleDes/TitleDes */ "./src/Components/frontend/TitleDes/TitleDes.js");
 /* harmony import */ var _Backend_TtitleDesBack_TtitleDesBack__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Backend/TtitleDesBack/TtitleDesBack */ "./src/Components/Backend/TtitleDesBack/TtitleDesBack.js");
+/* harmony import */ var _hooks_useHotspotManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../hooks/useHotspotManager */ "./src/hooks/useHotspotManager.js");
 
 
 
@@ -171,74 +172,18 @@ const Simple = ({
   isBackend = true
 }) => {
   const {
-    img = {},
-    hotspots = []
-  } = attributes || {};
-  const [activeHotspot, setActiveHotspot] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [containerSize, setContainerSize] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    width: 0,
-    height: 0
-  });
-  const containerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const imageRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const selectedHotspot = hotspots.find(h => h.id === activeHotspot);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    const updateSize = () => {
-      if (imageRef.current) {
-        const rect = imageRef.current.getBoundingClientRect();
-        setContainerSize({
-          width: rect.width,
-          height: rect.height
-        });
-      }
-    };
-    const image = imageRef.current;
-    if (image) {
-      if (image.complete) {
-        updateSize();
-      } else {
-        image.addEventListener('load', updateSize);
-      }
-    }
-    window.addEventListener('resize', updateSize);
-    return () => {
-      window.removeEventListener('resize', updateSize);
-      if (image) {
-        image.removeEventListener('load', updateSize);
-      }
-    };
-  }, []);
-  const handleStop = (_e, data, hotspotId) => {
-    const rect = containerRef.current.getBoundingClientRect();
-    const xPercent = (data.x + 12) / rect.width * 100;
-    const yPercent = (data.y + 12) / rect.height * 100;
-    const updatedHotspots = hotspots.map(hotspot => hotspot.id === hotspotId ? {
-      ...hotspot,
-      x: xPercent,
-      y: yPercent
-    } : hotspot);
-    setAttributes({
-      hotspots: updatedHotspots
-    });
-  };
-  const handleAddHotspot = e => {
-    if (e.target.closest('.hotspot')) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width * 100;
-    const y = (e.clientY - rect.top) / rect.height * 100;
-    const nextId = hotspots.length > 0 ? Math.max(...hotspots.map(h => h.id)) + 1 : 1;
-    const newHotspot = {
-      id: nextId,
-      x,
-      y,
-      title: `Hotspot Title ${nextId}`,
-      description: `Hotspot Description ${nextId}`
-    };
-    setAttributes({
-      hotspots: [...hotspots, newHotspot]
-    });
-    setActiveHotspot(newHotspot.id);
-  };
+    containerRef,
+    imageRef,
+    containerSize,
+    activeHotspot,
+    setActiveHotspot,
+    selectedHotspot,
+    handleAddHotspot,
+    handleStop,
+    handleDeleteHotspot,
+    img,
+    hotspots
+  } = (0,_hooks_useHotspotManager__WEBPACK_IMPORTED_MODULE_5__["default"])(attributes, setAttributes);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "simple",
     ref: containerRef
@@ -255,22 +200,18 @@ const Simple = ({
       x: hotspot.x / 100 * containerSize.width - 12,
       y: hotspot.y / 100 * containerSize.height - 12
     },
-    bounds: "parent",
+    bounds: ".image",
     onStop: (e, data) => handleStop(e, data, hotspot.id)
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `hotspot ${activeHotspot === hotspot.id ? 'hotspot-pulse' : ''}`,
     onClick: () => setActiveHotspot(activeHotspot === hotspot.id ? null : hotspot.id)
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "icon"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "delete-icon",
     onClick: e => {
       e.stopPropagation();
-      const updated = hotspots.filter(h => h.id !== hotspot.id);
-      setAttributes({
-        hotspots: updated
-      });
-      setActiveHotspot(null);
+      handleDeleteHotspot(hotspot.id);
     }
   }, "x"))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: hotspot.id,
@@ -280,7 +221,7 @@ const Simple = ({
       top: `${hotspot.y}%`
     },
     onClick: () => setActiveHotspot(activeHotspot === hotspot.id ? null : hotspot.id)
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "icon"
   }))), activeHotspot !== null && selectedHotspot && (isBackend ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Backend_TtitleDesBack_TtitleDesBack__WEBPACK_IMPORTED_MODULE_4__["default"], {
     selectedHotspot: selectedHotspot,
@@ -327,6 +268,129 @@ const TitleDes = ({
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TitleDes);
+
+/***/ }),
+
+/***/ "./src/hooks/useHotspotManager.js":
+/*!****************************************!*\
+  !*** ./src/hooks/useHotspotManager.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const useHotspotManager = (attributes = {}, setAttributes = () => {}) => {
+  const {
+    img = {},
+    hotspots = []
+  } = attributes;
+  const [activeHotspot, setActiveHotspot] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [containerSize, setContainerSize] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    width: 0,
+    height: 0
+  });
+  // const [activeIndex, setActiveIndex] = useState(1);
+
+  const containerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const imageRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const selectedHotspot = hotspots.find(h => h.id === activeHotspot);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (activeHotspot !== null) {
+      const index = hotspots.findIndex(h => h.id === activeHotspot);
+      if (index !== -1) {
+        setAttributes({
+          activeIndex: index
+        });
+      }
+    }
+  }, [activeHotspot, hotspots]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const updateSize = () => {
+      if (imageRef.current) {
+        const rect = imageRef.current.getBoundingClientRect();
+        setContainerSize({
+          width: rect.width,
+          height: rect.height
+        });
+      }
+    };
+    const image = imageRef.current;
+    if (image) {
+      if (image.complete) {
+        updateSize();
+      } else {
+        image.addEventListener('load', updateSize);
+      }
+    }
+    window.addEventListener('resize', updateSize);
+    return () => {
+      window.removeEventListener('resize', updateSize);
+      if (image) {
+        image.removeEventListener('load', updateSize);
+      }
+    };
+  }, []);
+  const handleAddHotspot = e => {
+    if (e.target.closest('.hotspot')) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width * 100;
+    const y = (e.clientY - rect.top) / rect.height * 100;
+    const nextId = hotspots.length > 0 ? Math.max(...hotspots.map(h => h.id)) + 1 : 1;
+    const newHotspot = {
+      id: nextId,
+      x,
+      y,
+      title: `Hotspot Title ${nextId}`,
+      description: `Hotspot Description ${nextId}`
+    };
+    setAttributes({
+      hotspots: [...hotspots, newHotspot]
+    });
+    setActiveHotspot(newHotspot.id);
+  };
+  const handleStop = (_e, data, hotspotId) => {
+    const rect = containerRef.current.getBoundingClientRect();
+    const xPercent = (data.x + 12) / rect.width * 100;
+    const yPercent = (data.y + 12) / rect.height * 100;
+    const updatedHotspots = hotspots.map(hotspot => hotspot.id === hotspotId ? {
+      ...hotspot,
+      x: xPercent,
+      y: yPercent
+    } : hotspot);
+    setAttributes({
+      hotspots: updatedHotspots
+    });
+  };
+  const handleDeleteHotspot = id => {
+    const updated = hotspots.filter(h => h.id !== id);
+    setAttributes({
+      hotspots: updated
+    });
+    setActiveHotspot(null);
+  };
+  return {
+    containerRef,
+    imageRef,
+    containerSize,
+    setContainerSize,
+    activeHotspot,
+    setActiveHotspot,
+    selectedHotspot,
+    handleAddHotspot,
+    handleStop,
+    handleDeleteHotspot,
+    img,
+    hotspots
+    // activeIndex
+  };
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useHotspotManager);
 
 /***/ }),
 

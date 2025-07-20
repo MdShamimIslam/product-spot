@@ -5,9 +5,11 @@ import { updateData } from "../../../../../../bpl-tools/utils/functions";
 import { getNextId } from "../../../../utils/functions";
 import HotspotItemPanel from "../../itemPanel/HotspotItemPanel";
 
-const General = ({ attributes, setAttributes }) => {
-  const { img = {}, hotspots = [] } = attributes || {};
 
+const General = ({ attributes, setAttributes }) => {
+  const { img = {}, hotspots = [], activeIndex } = attributes || {};
+
+  console.log(activeIndex);
 
   return (
     <PanelBody
@@ -26,7 +28,7 @@ const General = ({ attributes, setAttributes }) => {
       <div style={{ marginTop: "10px" }}> 
       <Label>{__("Product Hotspots:", "product-spot")}</Label>
         <ItemsPanel
-          {...{ attributes, setAttributes }}
+          {...{ attributes, setAttributes, activeIndex }}
           arrKey="hotspots"
           newItem={{
             id: getNextId(hotspots),

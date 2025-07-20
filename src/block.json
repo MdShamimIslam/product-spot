@@ -17,6 +17,10 @@
 			"type": "string",
 			"default": "center"
 		},
+		"activeIndex": {
+			"type": "number",
+			"default": 1
+		},
 		"img": {
 			"type": "object",
 			"default": {

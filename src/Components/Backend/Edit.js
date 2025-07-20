@@ -6,11 +6,13 @@ import Simple from "../Common/theme/Simple";
 
 const Edit = (props) => {
   const { attributes, setAttributes, clientId, device } = props;
+
   const anotherprops = {
     attributes,
     setAttributes,
-    device,
+    device
   }
+
 
   return (
     <>
