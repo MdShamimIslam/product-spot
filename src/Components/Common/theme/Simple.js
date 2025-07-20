@@ -41,7 +41,7 @@ const Simple = ({ attributes, setAttributes, isBackend = true }) => {
         image.removeEventListener('load', updateSize);
       }
     };
-  }, [hotspots]);
+  }, []);
 
   const handleStop = (_e, data, hotspotId) => {
     const rect = containerRef.current.getBoundingClientRect();
@@ -57,14 +57,40 @@ const Simple = ({ attributes, setAttributes, isBackend = true }) => {
     setAttributes({ hotspots: updatedHotspots });
   };
 
+  const handleAddHotspot = (e) => {
+    if (e.target.closest('.hotspot')) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    const nextId = hotspots.length > 0 ? Math.max(...hotspots.map(h => h.id)) + 1 : 1;
+
+    const newHotspot = {
+      id: nextId,
+      x,
+      y,
+      title: `Hotspot Title ${nextId}`,
+      description: `Hotspot Description ${nextId}`
+    };
+
+    setAttributes({ hotspots: [...hotspots, newHotspot] });
+    setActiveHotspot(newHotspot.id);
+  };
+
+
   return (
-    <div className="simple" ref={containerRef}>
-      <img
-        ref={imageRef}
-        src={img?.url || defaultImg}
-        alt={img?.alt || 'simple-product'}
-        className="image"
-      />
+    <div className="simple" ref={containerRef}  >
+      <div onClick={isBackend ? handleAddHotspot : undefined}>
+        <img
+          ref={imageRef}
+          src={img?.url || defaultImg}
+          alt={img?.alt || 'simple-product'}
+          className="image"
+
+        />
+      </div>
 
       {containerSize.width > 0 && hotspots?.map(hotspot => (
         isBackend ? (
@@ -82,6 +108,19 @@ const Simple = ({ attributes, setAttributes, isBackend = true }) => {
               onClick={() => setActiveHotspot(activeHotspot === hotspot.id ? null : hotspot.id)}
             >
               <Plus className="icon" />
+
+              <span
+                className="delete-icon"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const updated = hotspots.filter(h => h.id !== hotspot.id);
+                  setAttributes({ hotspots: updated });
+                  setActiveHotspot(null);
+                }}
+              >
+                x
+              </span>
+
             </div>
           </Draggable>
         ) : (

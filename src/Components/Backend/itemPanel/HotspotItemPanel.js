@@ -20,7 +20,7 @@ const HotspotItemPanel = ({ attributes, setAttributes, arrKey, index, setActiveI
 
   return (
     <>
-     <RangeControl
+      <RangeControl
         label={__("X Position", "hotspot")}
         value={hotspots[index].x}
         onChange={(val) => updateHotspot("x", parseInt(val))}
@@ -40,7 +40,7 @@ const HotspotItemPanel = ({ attributes, setAttributes, arrKey, index, setActiveI
         value={hotspots[index].description}
         onChange={(val) => updateHotspot("description", val)}
       />
-      
+
     </>
   );
 };

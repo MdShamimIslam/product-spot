@@ -207,7 +207,7 @@ const Simple = ({
         image.removeEventListener('load', updateSize);
       }
     };
-  }, [hotspots]);
+  }, []);
   const handleStop = (_e, data, hotspotId) => {
     const rect = containerRef.current.getBoundingClientRect();
     const xPercent = (data.x + 12) / rect.width * 100;
@@ -221,15 +221,35 @@ const Simple = ({
       hotspots: updatedHotspots
     });
   };
+  const handleAddHotspot = e => {
+    if (e.target.closest('.hotspot')) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width * 100;
+    const y = (e.clientY - rect.top) / rect.height * 100;
+    const nextId = hotspots.length > 0 ? Math.max(...hotspots.map(h => h.id)) + 1 : 1;
+    const newHotspot = {
+      id: nextId,
+      x,
+      y,
+      title: `Hotspot Title ${nextId}`,
+      description: `Hotspot Description ${nextId}`
+    };
+    setAttributes({
+      hotspots: [...hotspots, newHotspot]
+    });
+    setActiveHotspot(newHotspot.id);
+  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "simple",
     ref: containerRef
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: isBackend ? handleAddHotspot : undefined
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     ref: imageRef,
     src: img?.url || _utils_options__WEBPACK_IMPORTED_MODULE_2__.defaultImg,
     alt: img?.alt || 'simple-product',
     className: "image"
-  }), containerSize.width > 0 && hotspots?.map(hotspot => isBackend ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((react_draggable__WEBPACK_IMPORTED_MODULE_1___default()), {
+  })), containerSize.width > 0 && hotspots?.map(hotspot => isBackend ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((react_draggable__WEBPACK_IMPORTED_MODULE_1___default()), {
     key: hotspot.id,
     defaultPosition: {
       x: hotspot.x / 100 * containerSize.width - 12,
@@ -242,7 +262,17 @@ const Simple = ({
     onClick: () => setActiveHotspot(activeHotspot === hotspot.id ? null : hotspot.id)
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: "icon"
-  }))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "delete-icon",
+    onClick: e => {
+      e.stopPropagation();
+      const updated = hotspots.filter(h => h.id !== hotspot.id);
+      setAttributes({
+        hotspots: updated
+      });
+      setActiveHotspot(null);
+    }
+  }, "x"))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: hotspot.id,
     className: `hotspot ${activeHotspot === hotspot.id ? 'hotspot-pulse' : ''}`,
     style: {

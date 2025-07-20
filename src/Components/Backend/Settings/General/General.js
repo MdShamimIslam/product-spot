@@ -23,18 +23,17 @@ const General = ({ attributes, setAttributes }) => {
         placeholder={__("Enter Product Image URL", "product-spot")}
       />
 
-      <div style={{ marginTop: "10px" }}>
+      <div style={{ marginTop: "10px" }}> 
       <Label>{__("Product Hotspots:", "product-spot")}</Label>
         <ItemsPanel
-
           {...{ attributes, setAttributes }}
           arrKey="hotspots"
           newItem={{
             id: getNextId(hotspots),
             x: 20,
             y: 30,
-            title: "hotspot title",
-            description: "hotspot description",
+            title: `hotspot title ${getNextId(hotspots)}`,
+            description: `hotspot description ${getNextId(hotspots)}`
           }
           }
           ItemSettings={HotspotItemPanel}
