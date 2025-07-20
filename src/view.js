@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			<Style attributes={attributes} id={blockNameEl.id} />
 
 			<div className="productSpotWrapper">
-				<Simple />
+				<div className="productSpot">
+					<Simple {...{ attributes, isBackend: false }} />
+				</div>
 			</div>
 
 		</>);

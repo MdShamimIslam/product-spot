@@ -16,12 +16,12 @@ const Edit = (props) => {
     <>
       <Settings {...anotherprops} />
 
-      <div {...useBlockProps()}>
+      <div {...useBlockProps({ draggable: false })}>
         <Style {...{attributes, id:`block-${clientId}`, device }} />
 
         <div className="productSpotWrapper">
           <div className="productSpot">
-            <Simple />
+            <Simple {...{attributes, setAttributes}} />
           </div>
         </div>
       </div>

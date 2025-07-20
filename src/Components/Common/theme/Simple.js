@@ -1,34 +1,114 @@
-import { useState } from 'react';
-import { hotspots } from "../../../utils/options";
+import { useState, useRef, useEffect } from 'react';
 import { Plus } from 'lucide-react';
+import Draggable from 'react-draggable';
+import { defaultImg } from '../../../utils/options';
+import TitleDes from '../../frontend/TitleDes/TitleDes';
+import TitleDesBack from '../../Backend/TtitleDesBack/TtitleDesBack';
 
-const Simple = () => {
+const Simple = ({ attributes, setAttributes, isBackend = true }) => {
+  const { img = {}, hotspots = [] } = attributes || {};
   const [activeHotspot, setActiveHotspot] = useState(null);
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+  const containerRef = useRef(null);
+  const imageRef = useRef(null);
+
+  const selectedHotspot = hotspots.find(h => h.id === activeHotspot);
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (imageRef.current) {
+        const rect = imageRef.current.getBoundingClientRect();
+        setContainerSize({
+          width: rect.width,
+          height: rect.height
+        });
+      }
+    };
+
+    const image = imageRef.current;
+    if (image) {
+      if (image.complete) {
+        updateSize();
+      } else {
+        image.addEventListener('load', updateSize);
+      }
+    }
+
+    window.addEventListener('resize', updateSize);
+    return () => {
+      window.removeEventListener('resize', updateSize);
+      if (image) {
+        image.removeEventListener('load', updateSize);
+      }
+    };
+  }, [hotspots]);
+
+  const handleStop = (_e, data, hotspotId) => {
+    const rect = containerRef.current.getBoundingClientRect();
+
+    const xPercent = ((data.x + 12) / rect.width) * 100;
+    const yPercent = ((data.y + 12) / rect.height) * 100;
+
+    const updatedHotspots = hotspots.map(hotspot =>
+      hotspot.id === hotspotId
+        ? { ...hotspot, x: xPercent, y: yPercent }
+        : hotspot
+    );
+    setAttributes({ hotspots: updatedHotspots });
+  };
 
   return (
-    <div className="simple">
-      <img 
-        src="https://images.unsplash.com/photo-1484704849700-f032a568e944?ixid=M3w3MjUzNDh8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjB0ZWNoJTIwcHJvZHVjdHMlMjBlbGVjdHJvbmljc3xlbnwwfHx8fDE3NDcwNTE1ODh8MA&ixlib=rb-4.1.0&fit=fillmax&h=600&w=800" 
-        alt="Headphones"
+    <div className="simple" ref={containerRef}>
+      <img
+        ref={imageRef}
+        src={img?.url || defaultImg}
+        alt={img?.alt || 'simple-product'}
         className="image"
       />
 
-      {hotspots?.map(hotspot => (
-        <div 
-          key={hotspot.id}
-          className={`hotspot ${activeHotspot === hotspot.id ? 'hotspot-pulse' : ''}`}
-          style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
-          onClick={() => setActiveHotspot(activeHotspot === hotspot.id ? null : hotspot.id)}
-        >
-          <Plus className="icon" />
-        </div>
+      {containerSize.width > 0 && hotspots?.map(hotspot => (
+        isBackend ? (
+          <Draggable
+            key={hotspot.id}
+            defaultPosition={{
+              x: (hotspot.x / 100) * containerSize.width - 12,
+              y: (hotspot.y / 100) * containerSize.height - 12
+            }}
+            bounds="parent"
+            onStop={(e, data) => handleStop(e, data, hotspot.id)}
+          >
+            <div
+              className={`hotspot ${activeHotspot === hotspot.id ? 'hotspot-pulse' : ''}`}
+              onClick={() => setActiveHotspot(activeHotspot === hotspot.id ? null : hotspot.id)}
+            >
+              <Plus className="icon" />
+            </div>
+          </Draggable>
+        ) : (
+          <div
+            key={hotspot.id}
+            className={`hotspot ${activeHotspot === hotspot.id ? 'hotspot-pulse' : ''}`}
+            style={{
+              left: `${hotspot.x}%`,
+              top: `${hotspot.y}%`
+            }}
+            onClick={() => setActiveHotspot(activeHotspot === hotspot.id ? null : hotspot.id)}
+          >
+            <Plus className="icon" />
+          </div>
+        )
       ))}
 
-      {activeHotspot !== null && (
-        <div className="info">
-          <h3 className="title"> {hotspots.find(h => h.id === activeHotspot)?.title} </h3>
-          <p className="desc"> {hotspots.find(h => h.id === activeHotspot)?.description} </p>
-        </div>
+      {activeHotspot !== null && selectedHotspot && (
+        isBackend ? (
+          <TitleDesBack
+            selectedHotspot={selectedHotspot}
+            setAttributes={setAttributes}
+            hotspots={hotspots}
+          />
+        ) : (
+          <TitleDes {...selectedHotspot} />
+        )
       )}
     </div>
   );

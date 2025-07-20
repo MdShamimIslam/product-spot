@@ -12,10 +12,10 @@ const Style = ({ attributes, setAttributes, device }) => {
 
   return (
     <>
-      <PanelBody className='bPlPanelBody' title={__('Purpose', 'product-spot')} initialOpen={false}>
+      <PanelBody className='bPlPanelBody' title={__('Product Wrapper', 'product-spot')} initialOpen={false}>
 
       <PanelRow>
-          <Label className="">{__("Width", "audio-player-showcase")}</Label>
+          <Label className="">{__("Width", "product-spot")}</Label>
           <Device />
         </PanelRow>
         <UnitControl

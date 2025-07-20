@@ -15,16 +15,14 @@ $primaryColor: #4527a4;
 
 			.simple {
 				position: relative;
-				// max-width: 768px;
-				// margin: 0 auto;
-				// width: 400px;
-			
+
 				.image {
 					width: 100%;
 					height: auto;
-					border-radius: 0.5rem;
-				}
-			
+					border-radius: 8px;
+					display: block;
+				  }
+
 				.hotspot {
 					position: absolute;
 					width: 24px;
@@ -36,54 +34,59 @@ $primaryColor: #4527a4;
 					align-items: center;
 					justify-content: center;
 					cursor: pointer;
-					transform: translate(-50%, -50%);
+					transform: translate(-12px, -12px);
 					z-index: 10;
 					transition: box-shadow 0.3s ease;
-			
-				&.hotspot-pulse {
-					box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2);
+					left: 0; 
+					top: 0;  
+
+					&.hotspot-pulse {
+						box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2);
+					}
+
+					.icon {
+						width: 12px;
+						height: 12px;
+						color: #fff;
+					}
 				}
-			
-				.icon {
-					width: 12px;
-					height: 12px;
-					color: white;
-				}
-				}
-			
+			  
 				.info {
-					margin-top: 1rem;
-					padding: 1rem;
-					background: white;
-					border-radius: 0.5rem;
-					box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-					animation: fade-in 0.3s ease-in-out;
-			
-				.title {
-					font-size: 15px;
-					font-weight: 600;
-					color: #111827;
-					font-family: "inter";
-				}
-			
-				.desc {
-					color: #374151;
-					font-family: "inter";
+				  margin-top: 15px;
+				  background-color: #fff;
+				  padding: 15px;
+				  border-radius: 8px;
+				  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+				  z-index: 5;
+				  animation: fade-in 0.3s ease-in-out;
+			  
+				  .title {
 					font-size: 13px;
+					font-weight: 700;
+					color: #111827;
+					font-family: "Inter", sans-serif;
+					margin: 0;
+				  }
+			  
+				  .desc {
+					font-size: 12px;
+					color: #374151;
+					font-family: "Inter", sans-serif;
+					line-height: 0;
+				  }
 				}
-				}
-			}
-			/* Fade-in animation */
-			@keyframes fade-in {
-				from {
+			  
+				@keyframes fade-in {
+				  from {
 					opacity: 0;
 					transform: translateY(6px);
-				}
-				to {
+				  }
+				  to {
 					opacity: 1;
 					transform: translateY(0);
+				  }
 				}
-			}
+			 }
 		}  
 	}
 }

@@ -9,3 +9,10 @@ export const sanitizePerUnitValue = (value) => {
   }
   return value;
 }
+
+
+export const getNextId = (hotspots) => {
+  const ids = hotspots.map((h) => h.id);
+  const maxId = Math.max(...ids);
+  return maxId + 1;
+};
