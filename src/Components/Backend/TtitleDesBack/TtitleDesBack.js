@@ -7,6 +7,7 @@ const TitleDesBack = ({ selectedHotspot: { id, title, description }, setAttribut
             h.id === hotspotId ? { ...h, [field]: value } : h
         );
         setAttributes({ hotspots: updatedHotspots });
+        
     };
 
     return (
@@ -20,9 +21,10 @@ const TitleDesBack = ({ selectedHotspot: { id, title, description }, setAttribut
             <RichText
                 tagName="p"
                 value={description}
-                onChange={(val) => updateHotspotField(id, 'description', val)}
+                 onChange={(val) => updateHotspotField(id, 'description', val)}
                 className="desc"
             />
+
         </div>
     )
 }

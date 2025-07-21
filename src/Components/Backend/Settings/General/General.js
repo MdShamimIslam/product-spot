@@ -9,8 +9,6 @@ import HotspotItemPanel from "../../itemPanel/HotspotItemPanel";
 const General = ({ attributes, setAttributes }) => {
   const { img = {}, hotspots = [], activeIndex } = attributes || {};
 
-  console.log(activeIndex);
-
   return (
     <PanelBody
       className="bPlPanelBody"
@@ -25,8 +23,8 @@ const General = ({ attributes, setAttributes }) => {
         placeholder={__("Enter Product Image URL", "product-spot")}
       />
 
-      <div style={{ marginTop: "10px" }}> 
-      <Label>{__("Product Hotspots:", "product-spot")}</Label>
+      <div style={{ marginTop: "10px" }}>
+        <Label>{__("Product Hotspots:", "product-spot")}</Label>
         <ItemsPanel
           {...{ attributes, setAttributes, activeIndex }}
           arrKey="hotspots"
@@ -36,8 +34,7 @@ const General = ({ attributes, setAttributes }) => {
             y: 30,
             title: `hotspot title ${getNextId(hotspots)}`,
             description: `hotspot description ${getNextId(hotspots)}`
-          }
-          }
+          }}
           ItemSettings={HotspotItemPanel}
           itemLabel="Hotspot"
           design="all"

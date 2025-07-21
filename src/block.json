@@ -11,15 +11,11 @@
 	"attributes": {
 		"align": {
 			"type": "string",
-			"default": ""
+			"default": "wide"
 		},
 		"alignment": {
 			"type": "string",
 			"default": "center"
-		},
-		"activeIndex": {
-			"type": "number",
-			"default": 1
 		},
 		"img": {
 			"type": "object",

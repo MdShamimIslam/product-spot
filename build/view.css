@@ -39,7 +39,7 @@
   left: 0;
   top: 0;
 }
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .hotspot.hotspot-pulse {
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .hotspot.activeHotspot {
   box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2);
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .hotspot .icon {
@@ -47,7 +47,7 @@
   height: 12px;
   color: #fff;
 }
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .hotspot .delete-icon {
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .hotspot .deleteIcon {
   display: none;
   position: absolute;
   top: -12px;
@@ -59,7 +59,7 @@
   font-size: 10px;
   cursor: pointer;
 }
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .hotspot:hover .delete-icon {
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .hotspot:hover .deleteIcon {
   display: block;
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .info {
@@ -75,13 +75,13 @@
   font-size: 13px;
   font-weight: 700;
   color: #111827;
-  font-family: "Inter", sans-serif;
+  font-family: "inter";
   margin: 0;
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .info .desc {
   font-size: 12px;
   color: #374151;
-  font-family: "Inter", sans-serif;
+  font-family: "inter";
   line-height: 0;
 }
 @keyframes fade-in {
@@ -93,6 +93,126 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+@media (min-width: 768px) {
+  .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel {
+    flex-direction: row;
+  }
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot {
+  width: 100%;
+  position: relative !important;
+}
+@media (min-width: 768px) {
+  .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot {
+    width: 55%;
+  }
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot .image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  position: relative;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot .hotspot {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: #0f34da;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transform: translate(-12px, -12px);
+  z-index: 10;
+  transition: box-shadow 0.3s ease;
+  left: 0;
+  top: 0;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot .hotspot.activeHotspot {
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2);
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot .hotspot .icon {
+  width: 12px;
+  height: 12px;
+  color: #fff;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot .hotspot .deleteIcon {
+  display: none;
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 0px 5px;
+  font-size: 10px;
+  cursor: pointer;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot .hotspot:hover .deleteIcon {
+  display: block;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .infoBox {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .infoBox {
+    width: 45%;
+  }
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .infoBox .info {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.01);
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .infoBox .info .title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8px;
+  font-family: "inter";
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .infoBox .info .desc {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.5;
+  font-family: "inter";
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .infoBox .info .btnGroup {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 30px;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .infoBox .info .btnGroup .indexBtn {
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  background-color: #f9f9f9;
+  color: #4b5563;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .infoBox .info .btnGroup .indexBtn:hover {
+  background-color: rgba(200, 192, 192, 0.568627451);
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .infoBox .info .btnGroup .indexBtn.activeIdx {
+  background-color: #0f34da;
+  color: #ffffff;
+  box-shadow: none;
 }
 
 /*# sourceMappingURL=view.css.map*/

@@ -2,9 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 
 const useHotspotManager = (attributes = {}, setAttributes = () => { }) => {
     const { img = {}, hotspots = [] } = attributes;
-    const [activeHotspot, setActiveHotspot] = useState(null);
+    const [activeHotspot, setActiveHotspot] = useState(null); //sidePanel hole 1 dite hbe
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
-    // const [activeIndex, setActiveIndex] = useState(1);
 
     const containerRef = useRef(null);
     const imageRef = useRef(null);
@@ -53,7 +52,7 @@ const useHotspotManager = (attributes = {}, setAttributes = () => { }) => {
     const handleAddHotspot = (e) => {
         if (e.target.closest('.hotspot')) return;
 
-        const rect = containerRef.current.getBoundingClientRect();
+        const rect = imageRef.current.getBoundingClientRect();
         const x = ((e.clientX - rect.left) / rect.width) * 100;
         const y = ((e.clientY - rect.top) / rect.height) * 100;
 
@@ -102,8 +101,7 @@ const useHotspotManager = (attributes = {}, setAttributes = () => { }) => {
         handleStop,
         handleDeleteHotspot,
         img,
-        hotspots,
-        // activeIndex
+        hotspots
     };
 }
 

@@ -196,26 +196,26 @@ const Simple = ({
     className: "image"
   })), containerSize.width > 0 && hotspots?.map(hotspot => isBackend ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((react_draggable__WEBPACK_IMPORTED_MODULE_1___default()), {
     key: hotspot.id,
-    defaultPosition: {
+    position: {
       x: hotspot.x / 100 * containerSize.width - 12,
       y: hotspot.y / 100 * containerSize.height - 12
     },
     bounds: ".image",
     onStop: (e, data) => handleStop(e, data, hotspot.id)
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: `hotspot ${activeHotspot === hotspot.id ? 'hotspot-pulse' : ''}`,
+    className: `hotspot ${activeHotspot === hotspot.id ? 'activeHotspot' : ''}`,
     onClick: () => setActiveHotspot(activeHotspot === hotspot.id ? null : hotspot.id)
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: "icon"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "delete-icon",
+    className: "deleteIcon",
     onClick: e => {
       e.stopPropagation();
       handleDeleteHotspot(hotspot.id);
     }
   }, "x"))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: hotspot.id,
-    className: `hotspot ${activeHotspot === hotspot.id ? 'hotspot-pulse' : ''}`,
+    className: `hotspot ${activeHotspot === hotspot.id ? 'activeHotspot' : ''}`,
     style: {
       left: `${hotspot.x}%`,
       top: `${hotspot.y}%`
@@ -290,13 +290,11 @@ const useHotspotManager = (attributes = {}, setAttributes = () => {}) => {
     img = {},
     hotspots = []
   } = attributes;
-  const [activeHotspot, setActiveHotspot] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [activeHotspot, setActiveHotspot] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null); //sidePanel hole 1 dite hbe
   const [containerSize, setContainerSize] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     width: 0,
     height: 0
   });
-  // const [activeIndex, setActiveIndex] = useState(1);
-
   const containerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const imageRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const selectedHotspot = hotspots.find(h => h.id === activeHotspot);
@@ -338,7 +336,7 @@ const useHotspotManager = (attributes = {}, setAttributes = () => {}) => {
   }, []);
   const handleAddHotspot = e => {
     if (e.target.closest('.hotspot')) return;
-    const rect = containerRef.current.getBoundingClientRect();
+    const rect = imageRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width * 100;
     const y = (e.clientY - rect.top) / rect.height * 100;
     const nextId = hotspots.length > 0 ? Math.max(...hotspots.map(h => h.id)) + 1 : 1;
@@ -387,7 +385,6 @@ const useHotspotManager = (attributes = {}, setAttributes = () => {}) => {
     handleDeleteHotspot,
     img,
     hotspots
-    // activeIndex
   };
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useHotspotManager);

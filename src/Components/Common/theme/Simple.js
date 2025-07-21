@@ -37,7 +37,7 @@ const Simple = ({ attributes, setAttributes, isBackend = true }) => {
         isBackend ? (
           <Draggable
             key={hotspot.id}
-            defaultPosition={{
+            position={{
               x: (hotspot.x / 100) * containerSize.width - 12,
               y: (hotspot.y / 100) * containerSize.height - 12
             }}
@@ -45,13 +45,14 @@ const Simple = ({ attributes, setAttributes, isBackend = true }) => {
             onStop={(e, data) => handleStop(e, data, hotspot.id)}
           >
             <div
-              className={`hotspot ${activeHotspot === hotspot.id ? 'hotspot-pulse' : ''}`}
+              className={`hotspot ${activeHotspot === hotspot.id ? 'activeHotspot' : ''}`}
               onClick={() => setActiveHotspot(activeHotspot === hotspot.id ? null : hotspot.id)}
             >
+              
               <Plus className="icon" />
 
               <span
-                  className="delete-icon"
+                  className="deleteIcon"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleDeleteHotspot(hotspot.id);
@@ -65,7 +66,7 @@ const Simple = ({ attributes, setAttributes, isBackend = true }) => {
         ) : (
           <div
             key={hotspot.id}
-            className={`hotspot ${activeHotspot === hotspot.id ? 'hotspot-pulse' : ''}`}
+            className={`hotspot ${activeHotspot === hotspot.id ? 'activeHotspot' : ''}`}
             style={{
               left: `${hotspot.x}%`,
               top: `${hotspot.y}%`

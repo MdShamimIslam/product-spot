@@ -6,8 +6,8 @@ import { generalStyleTabs } from '../../../utils/options';
 import General from './General/General';
 import Style from './Style/Style';
 
-const Settings = (anotherprops) => {
-	const { attributes, setAttributes } = anotherprops;
+const Settings = (settingprops) => {
+	const { attributes, setAttributes } = settingprops;
 	const { alignment } = attributes;
 
 	return <>
@@ -15,9 +15,9 @@ const Settings = (anotherprops) => {
 			<TabPanel className='bPlTabPanel wp-block-b-blocks-test-purpose' activeClass='activeTab' tabs={generalStyleTabs} onSelect={tabController}>
 				{
 					tab => <>
-						{'general' === tab.name && <General {...anotherprops} />}
+						{'general' === tab.name && <General {...settingprops} />}
 
-						{'style' === tab.name && <Style {...anotherprops} />}
+						{'style' === tab.name && <Style {...settingprops} />}
 					</>
 				}
 			</TabPanel>

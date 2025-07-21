@@ -3,11 +3,12 @@ import { withSelect } from "@wordpress/data";
 import Settings from "./Settings/Settings";
 import Style from "../Common/Style";
 import Simple from "../Common/theme/Simple";
+import SidePanel from "../Common/theme/SidePanel";
 
 const Edit = (props) => {
   const { attributes, setAttributes, clientId, device } = props;
 
-  const anotherprops = {
+  const settingprops = {
     attributes,
     setAttributes,
     device
@@ -16,14 +17,15 @@ const Edit = (props) => {
 
   return (
     <>
-      <Settings {...anotherprops} />
+      <Settings {...settingprops} />
 
       <div {...useBlockProps({ draggable: false })}>
         <Style {...{attributes, id:`block-${clientId}`, device }} />
 
         <div className="productSpotWrapper">
           <div className="productSpot">
-            <Simple {...{attributes, setAttributes}} />
+            {/* <Simple {...{attributes, setAttributes}} /> */}
+            <SidePanel  {...{attributes, setAttributes}} />
           </div>
         </div>
       </div>
