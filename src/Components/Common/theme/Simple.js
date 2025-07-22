@@ -22,7 +22,7 @@ const Simple = ({ attributes, setAttributes, isBackend = true }) => {
 
 
   return (
-    <div className="simple" ref={containerRef}  >
+    <div className="simple" ref={containerRef} >
       <div onClick={isBackend ? handleAddHotspot : undefined}>
         <img
           ref={imageRef}

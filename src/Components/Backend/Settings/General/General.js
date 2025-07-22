@@ -1,13 +1,15 @@
 import { __ } from "@wordpress/i18n";
-import { PanelBody } from "@wordpress/components";
+import { PanelBody, SelectControl } from "@wordpress/components";
 import { Label, InlineDetailMediaUpload, ItemsPanel } from "../../../../../../bpl-tools/Components";
 import { updateData } from "../../../../../../bpl-tools/utils/functions";
 import { getNextId } from "../../../../utils/functions";
 import HotspotItemPanel from "../../itemPanel/HotspotItemPanel";
+import { themeOptions } from "../../../../utils/options";
+import { produce } from "immer";
 
 
 const General = ({ attributes, setAttributes }) => {
-  const { img = {}, hotspots = [], activeIndex } = attributes || {};
+  const { themeSl, img = {}, hotspots = [], activeIndex } = attributes || {};
 
   return (
     <PanelBody
@@ -15,6 +17,25 @@ const General = ({ attributes, setAttributes }) => {
       title={__("Product Configuration", "product-spot")}
       initialOpen={false}
     >
+       <SelectControl
+          label={__("Select Theme", "mp3player-block")}
+          labelPosition="left"
+          value={themeSl}
+          options={themeOptions}
+          onChange={(val) => {
+            const updateAttr = produce(attributes, (draft) => {
+              draft.themeSl = val;
+              if (val === "sidepanel") {
+                draft.align = "wide";
+              }else{
+                draft.align = "";
+              }
+              
+            });
+            setAttributes(updateAttr);
+          }}
+        />
+
       <Label>{__("Product Image:", "product-spot")}</Label>
       <InlineDetailMediaUpload
         types={["image"]}

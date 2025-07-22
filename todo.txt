@@ -1,1 +1,0 @@
-1. When I change X and Y then not effect in Simple component that means hotspot property x and y.

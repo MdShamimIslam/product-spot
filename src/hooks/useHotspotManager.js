@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 
 const useHotspotManager = (attributes = {}, setAttributes = () => { }) => {
     const { img = {}, hotspots = [] } = attributes;
-    const [activeHotspot, setActiveHotspot] = useState(null); //sidePanel hole 1 dite hbe
+    const [activeHotspot, setActiveHotspot] = useState(attributes?.themeSl === "sidepanel" ? 1 : null); 
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
 
     const containerRef = useRef(null);
@@ -21,33 +21,24 @@ const useHotspotManager = (attributes = {}, setAttributes = () => { }) => {
 
 
     useEffect(() => {
-        const updateSize = () => {
-            if (imageRef.current) {
-                const rect = imageRef.current.getBoundingClientRect();
-                setContainerSize({
-                    width: rect.width,
-                    height: rect.height,
-                });
-            }
-        };
-
         const image = imageRef.current;
-        if (image) {
-            if (image.complete) {
-                updateSize();
-            } else {
-                image.addEventListener('load', updateSize);
-            }
-        }
-
-        window.addEventListener('resize', updateSize);
+        if (!image) return;
+    
+        const observer = new ResizeObserver(() => {
+            const rect = image.getBoundingClientRect();
+            setContainerSize({
+                width: rect.width,
+                height: rect.height,
+            });
+        });
+    
+        observer.observe(image);
+    
         return () => {
-            window.removeEventListener('resize', updateSize);
-            if (image) {
-                image.removeEventListener('load', updateSize);
-            }
+            observer.disconnect();
         };
     }, []);
+    
 
     const handleAddHotspot = (e) => {
         if (e.target.closest('.hotspot')) return;
@@ -71,7 +62,7 @@ const useHotspotManager = (attributes = {}, setAttributes = () => { }) => {
     };
 
     const handleStop = (_e, data, hotspotId) => {
-        const rect = containerRef.current.getBoundingClientRect();
+        const rect = imageRef.current.getBoundingClientRect();
         const xPercent = ((data.x + 12) / rect.width) * 100;
         const yPercent = ((data.y + 12) / rect.height) * 100;
 

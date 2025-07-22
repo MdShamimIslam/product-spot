@@ -2,8 +2,7 @@ import { useBlockProps } from "@wordpress/block-editor";
 import { withSelect } from "@wordpress/data";
 import Settings from "./Settings/Settings";
 import Style from "../Common/Style";
-import Simple from "../Common/theme/Simple";
-import SidePanel from "../Common/theme/SidePanel";
+import Theme from "../Common/theme";
 
 const Edit = (props) => {
   const { attributes, setAttributes, clientId, device } = props;
@@ -11,7 +10,8 @@ const Edit = (props) => {
   const settingprops = {
     attributes,
     setAttributes,
-    device
+    device,
+    clientId
   }
 
 
@@ -20,12 +20,11 @@ const Edit = (props) => {
       <Settings {...settingprops} />
 
       <div {...useBlockProps({ draggable: false })}>
-        <Style {...{attributes, id:`block-${clientId}`, device }} />
+        <Style {...{ attributes, id: `block-${clientId}`, device }} />
 
         <div className="productSpotWrapper">
           <div className="productSpot">
-            {/* <Simple {...{attributes, setAttributes}} /> */}
-            <SidePanel  {...{attributes, setAttributes}} />
+            <Theme {...{ attributes, setAttributes }} />
           </div>
         </div>
       </div>

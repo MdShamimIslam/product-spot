@@ -11,11 +11,15 @@
 	"attributes": {
 		"align": {
 			"type": "string",
-			"default": "wide"
+			"default": ""
 		},
 		"alignment": {
 			"type": "string",
 			"default": "center"
+		},
+		"themeSl": {
+			"type": "string",
+			"default": "simple"
 		},
 		"img": {
 			"type": "object",
@@ -48,12 +52,6 @@
 					"tablet": "100%",
 					"mobile": "100%"
 				}
-			}
-		},
-		"options": {
-			"type": "object",
-			"default": {
-
 			}
 		}
 		

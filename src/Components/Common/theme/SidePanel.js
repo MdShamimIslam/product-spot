@@ -75,7 +75,7 @@ const SidePanel = ({ attributes, setAttributes, isBackend = true }) => {
             </div>
           )
         ))}
-        
+
       </div>
 
       <div className="infoBox">

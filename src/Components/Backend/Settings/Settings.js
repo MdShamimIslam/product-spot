@@ -5,6 +5,8 @@ import { tabController } from '../../../../../bpl-tools/utils/functions';
 import { generalStyleTabs } from '../../../utils/options';
 import General from './General/General';
 import Style from './Style/Style';
+// import { BplBlockPreview } from '../../../../../bpl-tools/Components';
+// import themes from "../../../utils/themes.json";
 
 const Settings = (settingprops) => {
 	const { attributes, setAttributes } = settingprops;
@@ -30,6 +32,17 @@ const Settings = (settingprops) => {
 				{ title: __('center', 'product-spot'), align: 'center', icon: 'align-center' },
 				{ title: __('right', 'product-spot'), align: 'right', icon: 'align-right' }
 			]} />
+
+			{/* <BplBlockPreview
+				blocks={themes}
+				clientId={clientId}
+				value={themeSl}
+				onChange={(value) =>
+					setAttributes({
+						themeSl: updateData(attributes, value, "themeSl"),
+					})
+				}
+			/> */}
 		</BlockControls>
 	</>;
 };
