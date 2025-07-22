@@ -1,16 +1,16 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import { TabPanel } from '@wordpress/components';
-import { tabController } from '../../../../../bpl-tools/utils/functions';
+import { tabController, updateData } from '../../../../../bpl-tools/utils/functions';
 import { generalStyleTabs } from '../../../utils/options';
 import General from './General/General';
 import Style from './Style/Style';
-// import { BplBlockPreview } from '../../../../../bpl-tools/Components';
-// import themes from "../../../utils/themes.json";
+import { BplBlockPreview } from '../../../../../bpl-tools/Components';
+import themes from "../../../utils/themes.json";
 
 const Settings = (settingprops) => {
-	const { attributes, setAttributes } = settingprops;
-	const { alignment } = attributes;
+	const { attributes, setAttributes, clientId } = settingprops;
+	const { alignment, themeSl } = attributes;
 
 	return <>
 		<InspectorControls>
@@ -33,7 +33,7 @@ const Settings = (settingprops) => {
 				{ title: __('right', 'product-spot'), align: 'right', icon: 'align-right' }
 			]} />
 
-			{/* <BplBlockPreview
+			<BplBlockPreview
 				blocks={themes}
 				clientId={clientId}
 				value={themeSl}
@@ -42,7 +42,7 @@ const Settings = (settingprops) => {
 						themeSl: updateData(attributes, value, "themeSl"),
 					})
 				}
-			/> */}
+			/>
 		</BlockControls>
 	</>;
 };
