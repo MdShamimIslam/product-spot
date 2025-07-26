@@ -82,7 +82,6 @@
   font-size: 13px;
   color: #374151;
   font-family: "inter";
-  line-height: 0;
 }
 @keyframes fade-in {
   from {
@@ -97,21 +96,21 @@
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: flex-start;
   gap: 24px;
 }
-@media (min-width: 768px) {
+@media (max-width: 1023px) {
   .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel {
-    flex-direction: row;
+    flex-direction: column;
   }
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot {
-  width: 100%;
-  position: relative !important;
+  width: 55%;
 }
-@media (min-width: 768px) {
+@media (max-width: 1023px) {
   .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot {
-    width: 55%;
+    width: 100%;
   }
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot .image {
@@ -162,13 +161,13 @@
   display: block;
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .infoBox {
-  width: 100%;
+  width: 45%;
+  max-height: 460px;
+  overflow-y: auto;
 }
-@media (min-width: 768px) {
+@media (max-width: 1023px) {
   .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .infoBox {
-    width: 45%;
-    max-height: 460px;
-    overflow-y: auto;
+    width: 100%;
   }
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .infoBox .info {

@@ -34,15 +34,15 @@ const HoverCard = ({ attributes, setAttributes, isBackend = true }) => {
     >
       <Plus className="icon" />
       {activeHotspot === hotspot.id && <>
-      
+
         {
-         (
-          <div className={`info ${hotspot.x > 70? 'leftShift' : ''}`}>
-            <TitleF {...{ selectedHotspot }} />
-            <DescriptionF {...{ selectedHotspot }} />
-          </div>
-        )
-      }
+          (
+            <div className={`info ${hotspot.x > 70 ? 'leftShift' : ''}`}>
+              <TitleF {...{ selectedHotspot }} />
+              <DescriptionF {...{ selectedHotspot }} />
+            </div>
+          )
+        }
       </>
       }
     </div>
@@ -60,6 +60,7 @@ const HoverCard = ({ attributes, setAttributes, isBackend = true }) => {
             ? <HoverCardDraggble key={hotspot.id} {...{ hotspot, containerSize, handleStop, activeHotspot, setActiveHotspot, handleDeleteHotspot, selectedHotspot, setAttributes, hotspots }} />
             : renderFrontendHotspot(hotspot)
         )}
+        
     </div>
   );
 };

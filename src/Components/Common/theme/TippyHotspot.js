@@ -40,7 +40,7 @@ export function TippyHotspots({ attributes, setAttributes, isBackend = true }) {
           bounds=".tippy"
           onStop={(e, data) => handleStop(e, data, hotspot.id)}
         >
-          <Tippy
+          {/* <Tippy
             content={
               <>
                 {
@@ -65,7 +65,7 @@ export function TippyHotspots({ attributes, setAttributes, isBackend = true }) {
             interactive={true}
             onShow={() => setActiveHotspot(hotspot.id)}
             onHide={() => setActiveHotspot(null)}
-          >
+          > */}
             <div
               className={`hotspot ${activeHotspot === hotspot.id ? 'activeHotspot' : ''}`}
             >
@@ -80,7 +80,7 @@ export function TippyHotspots({ attributes, setAttributes, isBackend = true }) {
                 x
               </span>
             </div>
-          </Tippy>
+          {/* </Tippy> */}
 
         </Draggable>
 

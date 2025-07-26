@@ -92,7 +92,6 @@ $primaryColor: #4527a4;
 				  font-size: 13px;
 				  color: #374151;
 				  font-family: "inter";
-				  line-height: 0;
 				}
 			}
 			
@@ -112,19 +111,20 @@ $primaryColor: #4527a4;
 			.sidePanel {
 				  position: relative;
 				  display: flex;
-				  flex-direction: column;
+				  flex-direction: row;
+				  align-items: flex-start;
 				  gap: 24px;
 			  
-				  @media (min-width: 768px) {
-					flex-direction: row;
+				
+				@media (max-width: 1023px) {
+					flex-direction: column; 
 				  }
 			  
 				.imageAndHotspot {
-				  width: 100%;
-				  position: relative !important;
+					width: 55%; 
 			  
-				  @media (min-width: 768px) {
-					width: 55%;
+				@media (max-width: 1023px) {
+					width: 100%; 
 				  }
 			  
 				  .image {
@@ -184,13 +184,13 @@ $primaryColor: #4527a4;
 				}
 			  
 				.infoBox {
-				  width: 100%;
-			  
-				  @media (min-width: 768px) {
 					width: 45%;
 					max-height: 460px;
 					overflow-y: auto;
-				  }
+
+				    @media (max-width: 1023px) {
+					 width: 100%; 
+				    }
 			  
 				  .info {
 					background-color: #ffffff;
