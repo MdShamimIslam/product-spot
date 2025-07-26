@@ -1,11 +1,11 @@
-import { Plus } from 'lucide-react';
-import Draggable from 'react-draggable';
-import { defaultImg } from '../../../utils/options';
-import TitleDes from '../../frontend/TitleDes/TitleDes';
-import TitleDesBack from '../../Backend/TtitleDesBack/TtitleDesBack';
 import useHotspotManager from '../../../hooks/useHotspotManager';
+import Title from '../../Backend/TtitleDesBack/Title';
+import Description from '../../Backend/TtitleDesBack/Description';
+import TitleF from '../../frontend/TitleDes/TitleF';
+import DescriptionF from '../../frontend/TitleDes/DescriptionF';
+import ProductImg from '../ProductImg/ProductImg';
 
-const Simple = ({ attributes, setAttributes, isBackend = true }) => {
+const Simple = ({ attributes, setAttributes, isBackend = true, Hotspot }) => {
   const {
     containerRef,
     imageRef,
@@ -20,77 +20,38 @@ const Simple = ({ attributes, setAttributes, isBackend = true }) => {
     hotspots
   } = useHotspotManager(attributes, setAttributes);
 
+  const backendHotspotProps = isBackend ? { containerSize, handleStop, handleDeleteHotspot } : {}
 
   return (
-    <div className="simple" ref={containerRef} >
-      <div onClick={isBackend ? handleAddHotspot : undefined}>
-        <img
-          ref={imageRef}
-          src={img?.url || defaultImg}
-          alt={img?.alt || 'simple-product'}
-          className="image"
+    <>
+      <div className="simple" ref={containerRef} >
 
-        />
+        <div onClick={isBackend ? handleAddHotspot : undefined}>
+          <ProductImg {...{ imageRef, img }} />
+        </div>
+
+        {containerSize.width > 0 && hotspots?.map(hotspot => <Hotspot key={hotspot?.id} {...{ hotspot, activeHotspot, setActiveHotspot }} {...backendHotspotProps} />)}
+
       </div>
-
-      {containerSize.width > 0 && hotspots?.map(hotspot => (
-        isBackend ? (
-          <Draggable
-            key={hotspot.id}
-            position={{
-              x: (hotspot.x / 100) * containerSize.width - 12,
-              y: (hotspot.y / 100) * containerSize.height - 12
-            }}
-            bounds=".image"
-            onStop={(e, data) => handleStop(e, data, hotspot.id)}
-          >
-            <div
-              className={`hotspot ${activeHotspot === hotspot.id ? 'activeHotspot' : ''}`}
-              onClick={() => setActiveHotspot(activeHotspot === hotspot.id ? null : hotspot.id)}
-            >
-              
-              <Plus className="icon" />
-
-              <span
-                  className="deleteIcon"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDeleteHotspot(hotspot.id);
-                  }}
-                >
-                  x
-                </span>
-
-            </div>
-          </Draggable>
-        ) : (
-          <div
-            key={hotspot.id}
-            className={`hotspot ${activeHotspot === hotspot.id ? 'activeHotspot' : ''}`}
-            style={{
-              left: `${hotspot.x}%`,
-              top: `${hotspot.y}%`
-            }}
-            onClick={() => setActiveHotspot(activeHotspot === hotspot.id ? null : hotspot.id)}
-          >
-            <Plus className="icon" />
-          </div>
-        )
-      ))}
 
       {activeHotspot !== null && selectedHotspot && (
         isBackend ? (
-          <TitleDesBack
-            selectedHotspot={selectedHotspot}
-            setAttributes={setAttributes}
-            hotspots={hotspots}
-          />
+          <div className='info'>
+            <Title {...{ selectedHotspot, setAttributes, hotspots }} />
+            <Description {...{ selectedHotspot, setAttributes, hotspots }} />
+          </div>
+
         ) : (
-          <TitleDes {...selectedHotspot} />
+          <div className='info'>
+            <TitleF {...{ selectedHotspot }} />
+            <DescriptionF {...{ selectedHotspot }} />
+          </div>
         )
       )}
-    </div>
+      
+    </>
   );
 };
 
 export default Simple;
+

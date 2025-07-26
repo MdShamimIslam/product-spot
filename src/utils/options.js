@@ -10,6 +10,8 @@ export const defaultImg ="https://images.unsplash.com/photo-1484704849700-f032a5
 export const themeOptions = [
 	{ label: "Simple", value: "simple" },
 	{ label: "Side Panel", value: "sidepanel" },
+	{ label: "Tippy", value: "tippy" },
+	{ label: "Hover Card", value: "hoverCard" },
   ];
 
 

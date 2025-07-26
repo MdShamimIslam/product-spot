@@ -62,7 +62,7 @@
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .hotspot:hover .deleteIcon {
   display: block;
 }
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .info {
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .info {
   margin-top: 15px;
   background-color: #fff;
   padding: 15px;
@@ -71,15 +71,15 @@
   z-index: 5;
   animation: fade-in 0.3s ease-in-out;
 }
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .info .title {
-  font-size: 13px;
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .info .title {
+  font-size: 15px;
   font-weight: 700;
   color: #111827;
   font-family: "inter";
   margin: 0;
 }
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .info .desc {
-  font-size: 12px;
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .info .desc {
+  font-size: 13px;
   color: #374151;
   font-family: "inter";
   line-height: 0;
@@ -202,6 +202,7 @@
   aspect-ratio: 1;
   border-radius: 50%;
   border: none;
+  outline: none;
   background-color: #f9f9f9;
   color: #4b5563;
   font-weight: bold;
@@ -216,5 +217,153 @@
   color: #ffffff;
   box-shadow: none;
 }
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy {
+  position: relative;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .tippy-box[data-theme~=hotspot] {
+  background-color: #0c50d8;
+  padding: 0px 5px;
+  border-radius: 5px;
+  max-width: 250px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .tippy-box[data-theme~=hotspot] .title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 4px;
+  font-family: "inter";
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .tippy-box[data-theme~=hotspot] .desc {
+  font-size: 14px;
+  color: #ffffff;
+  font-family: "inter";
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .hotspot {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: #0f34da;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-12px, -12px);
+  cursor: pointer;
+  z-index: 10;
+  transition: box-shadow 0.2s ease-in-out;
+  left: 0;
+  top: 0;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .hotspot.activeHotspot {
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2);
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .hotspot .icon {
+  width: 12px;
+  height: 12px;
+  color: #fff;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .hotspot .deleteIcon {
+  display: none;
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 0px 5px;
+  font-size: 10px;
+  cursor: pointer;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .hotspot:hover .deleteIcon {
+  display: block;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard {
+  position: relative;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .hotspot {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: #1f3fff;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 1;
+  left: 0;
+  top: 0;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .hotspot.activeHotspot {
+  z-index: 10;
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2);
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .hotspot .icon {
+  width: 12px;
+  height: 12px;
+  color: #ffffff;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .hotspot .deleteIcon {
+  display: none;
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 0px 5px;
+  font-size: 10px;
+  cursor: pointer;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .hotspot:hover .deleteIcon {
+  display: block;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .hotspot .info {
+  position: absolute;
+  top: 0%;
+  left: 100%;
+  margin-left: 8px;
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 20;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .hotspot .info.leftShift {
+  transform: translateX(-100%) translateX(-16px);
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .hotspot .info .title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  font-family: "inter";
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .hotspot .info .desc {
+  font-size: 14px;
+  color: #4b5563;
+  font-family: "inter";
+  line-height: 1.5;
+}
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/tippy.js/dist/tippy.css ***!
+  \******************************************************************************************************************************************************************************************/
+.tippy-box[data-animation=fade][data-state=hidden]{opacity:0}[data-tippy-root]{max-width:calc(100vw - 10px)}.tippy-box{position:relative;background-color:#333;color:#fff;border-radius:4px;font-size:14px;line-height:1.4;white-space:normal;outline:0;transition-property:transform,visibility,opacity}.tippy-box[data-placement^=top]>.tippy-arrow{bottom:0}.tippy-box[data-placement^=top]>.tippy-arrow:before{bottom:-7px;left:0;border-width:8px 8px 0;border-top-color:initial;transform-origin:center top}.tippy-box[data-placement^=bottom]>.tippy-arrow{top:0}.tippy-box[data-placement^=bottom]>.tippy-arrow:before{top:-7px;left:0;border-width:0 8px 8px;border-bottom-color:initial;transform-origin:center bottom}.tippy-box[data-placement^=left]>.tippy-arrow{right:0}.tippy-box[data-placement^=left]>.tippy-arrow:before{border-width:8px 0 8px 8px;border-left-color:initial;right:-7px;transform-origin:center left}.tippy-box[data-placement^=right]>.tippy-arrow{left:0}.tippy-box[data-placement^=right]>.tippy-arrow:before{left:-7px;border-width:8px 8px 8px 0;border-right-color:initial;transform-origin:center right}.tippy-box[data-inertia][data-state=visible]{transition-timing-function:cubic-bezier(.54,1.5,.38,1.11)}.tippy-arrow{width:16px;height:16px;color:#333}.tippy-arrow:before{content:"";position:absolute;border-color:transparent;border-style:solid}.tippy-content{position:relative;padding:5px 9px;z-index:1}
 
 /*# sourceMappingURL=view.css.map*/

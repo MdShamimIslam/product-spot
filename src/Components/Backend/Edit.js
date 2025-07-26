@@ -3,6 +3,7 @@ import { withSelect } from "@wordpress/data";
 import Settings from "./Settings/Settings";
 import Style from "../Common/Style";
 import Theme from "../Common/theme";
+import DraggableHotspot from "./DraggableHotspot/DraggableHotspot";
 
 const Edit = (props) => {
   const { attributes, setAttributes, clientId, device } = props;
@@ -24,7 +25,7 @@ const Edit = (props) => {
 
         <div className="productSpotWrapper">
           <div className="productSpot">
-            <Theme {...{ attributes, setAttributes }} />
+            <Theme {...{ attributes, setAttributes, Hotspot: DraggableHotspot }} />
           </div>
         </div>
       </div>

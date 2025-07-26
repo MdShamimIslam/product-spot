@@ -16,3 +16,11 @@ export const getNextId = (hotspots) => {
   const maxId = Math.max(...ids);
   return maxId + 1;
 };
+
+export const updateHotspotField = (hotspots, setAttributes, hotspotId, field, value) => {
+  const updatedHotspots = hotspots?.map(h =>
+      h?.id === hotspotId ? { ...h, [field]: value } : h
+  );
+  setAttributes({ hotspots: updatedHotspots });
+  
+};

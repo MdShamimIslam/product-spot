@@ -80,6 +80,8 @@ const useHotspotManager = (attributes = {}, setAttributes = () => { }) => {
         setActiveHotspot(null);
     };
 
+    // const defaultImg = defaultImg;
+
     return {
         containerRef,
         imageRef,

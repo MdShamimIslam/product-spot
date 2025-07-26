@@ -2,10 +2,21 @@
     {
         "label":"Simple",
         "value":"simple",
-        "content":"<!-- wp:psb/product-spot /-->"    },
+        "content":"<!-- wp:psb/product-spot /-->"
+    },
     {
         "label":"Side Panel",
         "value":"sidepanel",
         "content":"<!-- wp:psb/product-spot {\"align\":\"wide\",\"themeSl\":\"sidepanel\"} /-->"
+    },
+    {
+        "label":"Tippy",
+        "value":"tippy",
+        "content":"<!-- wp:psb/product-spot {\"themeSl\":\"tippy\"} /-->"
+    },
+    {
+        "label":"Hover Card",
+        "value":"hoverCard",
+        "content":"<!-- wp:psb/product-spot {\"themeSl\":\"hoverCard\"} /-->"
     }
 ]
