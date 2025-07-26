@@ -1,4 +1,5 @@
-const DescriptionF = ({ selectedHotspot:{description} }) => {
+const DescriptionF = ({ selectedHotspot }) => {
+  const {description} = selectedHotspot || {};
   
   return (
       <p dangerouslySetInnerHTML={{ __html: description }} className="desc" />

@@ -13,16 +13,16 @@ $primaryColor: #4527a4;
 		.productSpot{
 			min-width: 250px;
 
+			.image {
+				width: 100%;
+				height: auto;
+				border-radius: 8px;
+				display: block;
+			}
+
 			// simple css start
 			.simple {
 				position: relative;
-
-				.image {
-					width: 100%;
-					height: auto;
-					border-radius: 8px;
-					display: block;
-				  }
 
 				.hotspot {
 					position: absolute;
@@ -69,9 +69,12 @@ $primaryColor: #4527a4;
 							display: block;
 						}
 					}
+
+					
 				}
 			 }
-			.info {
+
+			.simpleInfo {
 				margin-top: 15px;
 				background-color: #fff;
 				padding: 15px;
@@ -107,13 +110,14 @@ $primaryColor: #4527a4;
 			}
 			// simple css end
 
+
 			// side panel css start
 			.sidePanel {
-				  position: relative;
-				  display: flex;
-				  flex-direction: row;
-				  align-items: flex-start;
-				  gap: 24px;
+				position: relative;
+				display: flex;
+				flex-direction: row;
+				align-items: flex-start;
+				gap: 24px;
 			  
 				
 				@media (max-width: 1023px) {
@@ -122,18 +126,11 @@ $primaryColor: #4527a4;
 			  
 				.imageAndHotspot {
 					width: 55%; 
-			  
-				@media (max-width: 1023px) {
-					width: 100%; 
-				  }
-			  
-				  .image {
-					width: 100%;
-					height: auto;
-					border-radius: 8px;
-					display: block;
 					position: relative;
-				  }
+			  
+				    @media (max-width: 1023px) {
+						width: 100%; 
+				    }
 			  
 				  .hotspot {
 					position: absolute;
@@ -173,7 +170,7 @@ $primaryColor: #4527a4;
 						padding: 0px 5px;
 						font-size: 10px;
 						cursor: pointer;
-					  }
+					}
 
 					&:hover {
 						.deleteIcon {
@@ -248,39 +245,10 @@ $primaryColor: #4527a4;
 			}
 			// side panel css end
 
+
 			// tippy css start
 			.tippy{
 				position: relative;
-			  
-				.image {
-				  width: 100%;
-				  height: auto;
-				  border-radius: 8px;
-				  display: block;
-				}
-
-				.tippy-box[data-theme~='hotspot'] {
-					background-color: #0c50d8;
-					padding: 0px 5px;
-					border-radius: 5px;
-					max-width: 250px;
-					box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-				  
-					.title {
-						font-size: 16px;
-						font-weight: 600;
-						color: #ffffff;
-						margin-bottom: 4px;
-						font-family: "inter";
-					}
-				
-					.desc {
-						font-size: 14px;
-						color: #ffffff;
-						font-family: "inter";
-					}
-					  
-				}
 			  
 				.hotspot {
 					position: absolute;
@@ -294,12 +262,13 @@ $primaryColor: #4527a4;
 					justify-content: center;
 					transform: translate(-12px, -12px);
 					cursor: pointer;
-					z-index: 10;
+					z-index: 1;
 					transition: box-shadow 0.2s ease-in-out;
 					left: 0; 
 					top: 0; 
 				
 					&.activeHotspot {
+					  z-index: 10;
 					  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2);
 					}
 				
@@ -326,21 +295,44 @@ $primaryColor: #4527a4;
 							display: block;
 						}
 					}
+					
+				}
+
+				.tippy-box[data-theme~='hotspot'] {
+					background-color: #0c50d8;
+					padding: 0px 5px;
+					border-radius: 5px;
+					width: 300px;
+					max-width: 200px;
+					box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+					z-index: 20;
+
+					.info{
+						.title {
+							font-size: 16px;
+							font-weight: 600;
+							color: #ffffff;
+							margin-bottom: 4px;
+							font-family: "inter";
+						}
+					
+						.desc {
+							font-size: 14px;
+							color: #ffffff;
+							font-family: "inter";
+						}
+
+					}	
+					  
 				}
 
 			}
 			// tippy css end
 
+
 			// hover card css start
 			.hoverCard {
 				position: relative;
-
-				.image {
-				  width: 100%;
-				  height: auto;
-				  border-radius: 8px;
-				  display: block;
-				}
 			  
 				.hotspot {
 				  position: absolute;
@@ -398,6 +390,7 @@ $primaryColor: #4527a4;
 						border-radius: 8px;
 						box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 						min-width: 200px;
+						width: 300px;
 						z-index: 20;
 				
 						&.leftShift {

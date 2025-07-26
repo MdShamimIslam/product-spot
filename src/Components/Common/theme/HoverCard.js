@@ -48,6 +48,7 @@ const HoverCard = ({ attributes, setAttributes, isBackend = true }) => {
     </div>
   );
 
+
   return (
     <div className="hoverCard" ref={containerRef}>
       <div onClick={isBackend ? handleAddHotspot : undefined}>
@@ -60,7 +61,7 @@ const HoverCard = ({ attributes, setAttributes, isBackend = true }) => {
             ? <HoverCardDraggble key={hotspot.id} {...{ hotspot, containerSize, handleStop, activeHotspot, setActiveHotspot, handleDeleteHotspot, selectedHotspot, setAttributes, hotspots }} />
             : renderFrontendHotspot(hotspot)
         )}
-        
+
     </div>
   );
 };

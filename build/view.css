@@ -13,14 +13,14 @@
 .wp-block-psb-product-spot .productSpotWrapper .productSpot {
   min-width: 250px;
 }
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .simple {
-  position: relative;
-}
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .image {
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .image {
   width: 100%;
   height: auto;
   border-radius: 8px;
   display: block;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .simple {
+  position: relative;
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .hotspot {
   position: absolute;
@@ -62,7 +62,7 @@
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .simple .hotspot:hover .deleteIcon {
   display: block;
 }
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .info {
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .simpleInfo {
   margin-top: 15px;
   background-color: #fff;
   padding: 15px;
@@ -71,14 +71,14 @@
   z-index: 5;
   animation: fade-in 0.3s ease-in-out;
 }
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .info .title {
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .simpleInfo .title {
   font-size: 15px;
   font-weight: 700;
   color: #111827;
   font-family: "inter";
   margin: 0;
 }
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .info .desc {
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .simpleInfo .desc {
   font-size: 13px;
   color: #374151;
   font-family: "inter";
@@ -107,18 +107,12 @@
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot {
   width: 55%;
+  position: relative;
 }
 @media (max-width: 1023px) {
   .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot {
     width: 100%;
   }
-}
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot .image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  display: block;
-  position: relative;
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .sidePanel .imageAndHotspot .hotspot {
   position: absolute;
@@ -219,31 +213,6 @@
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy {
   position: relative;
 }
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  display: block;
-}
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .tippy-box[data-theme~=hotspot] {
-  background-color: #0c50d8;
-  padding: 0px 5px;
-  border-radius: 5px;
-  max-width: 250px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .tippy-box[data-theme~=hotspot] .title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 4px;
-  font-family: "inter";
-}
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .tippy-box[data-theme~=hotspot] .desc {
-  font-size: 14px;
-  color: #ffffff;
-  font-family: "inter";
-}
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .hotspot {
   position: absolute;
   width: 24px;
@@ -256,12 +225,13 @@
   justify-content: center;
   transform: translate(-12px, -12px);
   cursor: pointer;
-  z-index: 10;
+  z-index: 1;
   transition: box-shadow 0.2s ease-in-out;
   left: 0;
   top: 0;
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .hotspot.activeHotspot {
+  z-index: 10;
   box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2);
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .hotspot .icon {
@@ -284,14 +254,29 @@
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .hotspot:hover .deleteIcon {
   display: block;
 }
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .tippy-box[data-theme~=hotspot] {
+  background-color: #0c50d8;
+  padding: 0px 5px;
+  border-radius: 5px;
+  width: 300px;
+  max-width: 200px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .tippy-box[data-theme~=hotspot] .info .title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 4px;
+  font-family: "inter";
+}
+.wp-block-psb-product-spot .productSpotWrapper .productSpot .tippy .tippy-box[data-theme~=hotspot] .info .desc {
+  font-size: 14px;
+  color: #ffffff;
+  font-family: "inter";
+}
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard {
   position: relative;
-}
-.wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  display: block;
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .hotspot {
   position: absolute;
@@ -343,6 +328,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   min-width: 200px;
+  width: 300px;
   z-index: 20;
 }
 .wp-block-psb-product-spot .productSpotWrapper .productSpot .hoverCard .hotspot .info.leftShift {

@@ -57,6 +57,7 @@ const SidePanel = ({ attributes, setAttributes, isBackend = true, Hotspot }) => 
               </button>
             ))}
           </div>
+          
         </div>
       </div>
     </div>

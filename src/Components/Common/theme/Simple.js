@@ -35,20 +35,26 @@ const Simple = ({ attributes, setAttributes, isBackend = true, Hotspot }) => {
       </div>
 
       {activeHotspot !== null && selectedHotspot && (
-        isBackend ? (
-          <div className='info'>
-            <Title {...{ selectedHotspot, setAttributes, hotspots }} />
-            <Description {...{ selectedHotspot, setAttributes, hotspots }} />
-          </div>
+        <div className='simpleInfo'>
+          {
+            isBackend ? (
+              <>
+                <Title {...{ selectedHotspot, setAttributes, hotspots }} />
+                <Description {...{ selectedHotspot, setAttributes, hotspots }} />
+              </>
 
-        ) : (
-          <div className='info'>
-            <TitleF {...{ selectedHotspot }} />
-            <DescriptionF {...{ selectedHotspot }} />
-          </div>
-        )
-      )}
-      
+            ) : (
+              <>
+                <TitleF {...{ selectedHotspot }} />
+                <DescriptionF {...{ selectedHotspot }} />
+              </>
+            )
+          }
+        </div>
+
+      )
+      }
+
     </>
   );
 };

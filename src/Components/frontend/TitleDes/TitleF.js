@@ -1,4 +1,5 @@
-const TitleF = ({ selectedHotspot:{title} }) => {
+const TitleF = ({ selectedHotspot }) => {
+  const {title} = selectedHotspot || {};
   
   return (
       <h3 dangerouslySetInnerHTML={{ __html: title }} className="title" />
